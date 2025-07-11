@@ -8,4 +8,4 @@ Before running any script, set the API key as an environment variable:
 
 ## Exercises 
 
-1. llm_judge folder has `llm_judge_problem.py` and  `llm_judge_answers.py`
+1. 00_llm_judge folder has `llm_judge_problem.py` and  `llm_judge_answers.py`
