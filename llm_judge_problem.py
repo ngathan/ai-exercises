@@ -13,11 +13,11 @@ class LLM:
 
     def response(self, chat, temp=0, max_tokens=500):
 
-        response = self.llm.chat.completions.create(messasges=chat,
-                                                    model=self.model,
-                                                    temperature=temp,
-                                                    max_tokens=max_tokens)
-        return response.choices[0].message
+        response = self.llm.chat.completions.create(model=self.model,
+                                                        messages=chat,
+                                                        temperature=temp,
+                                                        max_tokens=max_tokens)
+        return response.choices[0].message.content
 
 
 def extract_answer(answer):
@@ -86,13 +86,14 @@ def main():
     # Load the GSM8k dataset. This is a set of school math puzzle problems where given a math problem in text
     # you have to generate an answer.
     # https://huggingface.co/datasets/openai/gsm8k
-    dataset = load_dataset("openai/gsm8k", "main", split="test")
+    dataset = load_dataset("openai/gsm8k", "main")
     test_dataset = [(dp["question"], extract_answer(dp["answer"])) for dp in dataset["test"]]
-    test_dataset = test_dataset[:20]
+    #test_dataset = test_dataset[:20] # test with the first 20 examples
     gold_answers = [predicted_answer for (_, predicted_answer) in test_dataset]
 
     # Step 1: Generate responses and check the answer
-    llm = LLM(model="")
+    llm = LLM(model="TODO")
+
     reasoning_with_answer = generate_response(test_dataset, llm)
 
     model_scores = eval_model(reasoning_with_answer, gold_answers)
@@ -100,7 +101,7 @@ def main():
     print(f"Accuracy of the LLM agent is {model_acc:.2f}")
 
     # Step 2: Generate LLM judge response
-    test_dataset_with_response = [(dp["question"], reasoning_with_answer_[0])
+    test_dataset_with_response = [(dp[0], reasoning_with_answer_[0])
                                   for reasoning_with_answer_, dp in zip(reasoning_with_answer, test_dataset)]
     judge_response_with_answer = generate_judge_response(test_dataset_with_response)
     judge_answers = [judge_answer for (judge_response, judge_answer) in judge_response_with_answer]
@@ -136,7 +137,7 @@ def main():
             reflection_reasoning, final_answer = self_reflection(history)
             history.append(reflection_reasoning)
 
-        final_score = 1.0 if dp["answer"].lower().strip() == final_answer.lower().strip() else 0
+        final_score = 1.0 if dp[1].lower().strip() == final_answer.lower().strip() else 0
         final_scores.append(final_score)
         full_histories.append(history)
 
