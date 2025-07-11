@@ -68,7 +68,7 @@ def generate_response(test_dataset, llm):
     """
     ans = []
     for i, (question, _) in enumerate(test_dataset):
-        if i % 50 == 0:
+        if i % 200 == 0:
             print('processing question ', i)
 
         chat = [
@@ -101,7 +101,7 @@ def generate_judge_response(test_dataset_with_response, llm):
 
     ans = []
     for i, (question, answer) in enumerate(test_dataset_with_response):
-        if i % 50 == 0:
+        if i % 200 == 0:
             print('processing question ', i)
 
         chat = [
@@ -189,7 +189,7 @@ def main():
 
     # examining the test and answer question
     test_dataset = [(dp["question"], extract_answer(dp["answer"])) for dp in dataset["test"]]
-    test_dataset = test_dataset[:150]
+    #test_dataset = test_dataset[:150]
     gold_answers = [predicted_answer for (_, predicted_answer) in test_dataset]
 
     # Step 1: Generate responses and check the answer
