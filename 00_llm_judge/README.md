@@ -4,7 +4,7 @@
 use an LLM judge to evaluate the responses, 
 then use a self-reflection step to regenerate answers to those questions 
 which the LLM judge has decided that they were not correct.
-Compare the accuracy of each step to record whether the AI system is better than simply the LLM generator. 
+Compare the accuracy of each step to record whether the AI system is better than simply using the LLM generator. 
 
 ## Installation
 
