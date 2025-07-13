@@ -1,9 +1,10 @@
 # LLM Judge 
 
 **Problem Statement:** Given the GSM8k dataset, generate the answer to the questions, 
-use an LLM judge to evaluate the response, 
+use an LLM judge to evaluate the responses, 
 then use a self-reflection step to regenerate answers to those questions 
-which the LLM judge has decided hat it's not correct.
+which the LLM judge has decided that they were not correct.
+Compare the accuracy of each step to record whether the AI system is better than simply the LLM generator. 
 
 ## Installation
 
