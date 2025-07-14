@@ -12,7 +12,5 @@ Compare the accuracy of each step to record whether the AI system is better than
 
 **Hints:**
 
-Hint 1:When prompting the LLM at the judge and self-reflection steps, keep adding the assistant's responses to the chat.
-Hint 2:  
-
+Hint 1: When prompting the LLM at the judge and self-reflection steps, keep adding the assistant's responses to the chat.
 
