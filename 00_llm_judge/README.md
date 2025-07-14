@@ -8,7 +8,7 @@ Compare the accuracy of each step to record whether the AI system is better than
 
 **AI system design:**
 
-![img](../media)
+![img](../media/00_llm_judge.png)
 
 **Hints:**
 
