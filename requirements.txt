@@ -2,3 +2,4 @@ openai
 torch
 transformers
 datasets
+sklearn
