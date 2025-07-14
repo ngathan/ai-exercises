@@ -4,26 +4,15 @@
 use an LLM judge to evaluate the responses, 
 then use a self-reflection step to regenerate answers to those questions 
 which the LLM judge has decided that they were not correct.
-Compare the accuracy of each step to record whether the AI system is better than simply using the LLM generator. 
+Compare the accuracy of each step to record whether the AI system is better than simply using the LLM generator.
 
-## Installation
-
-The default llms for this project are OpenAI models. You will need an OpenAI API Key to use them. 
-
-Install the requirements file
-
-```python3 -m pip install -r requirements.txt```
-
-Before running any script, set the API key as an environment variable:
-
-```export OPENAI_KEY=...```
-
-## List of Exercises 
-
-### Exercise 1: Implementing LLM Judge and Self-Reflection
+**AI system design:**
 
 ![img](media/00_llm_judge.png)
 
-The goal of this exercise is to build an LLM judge to detect failures in a model's reasoning and a self-reflection step to try to recover from those failures. Using these two steps together can help improve the model's original peformance.
+**Hints:**
 
-The folder 00_llm_judge folder contains this exercise and contains the problem definition in `problem.py` and solution in `solution.py`
+Hint 1:When prompting the LLM at the judge and self-reflection steps, keep adding the assistant's responses to the chat.
+Hint 2:  
+
+
