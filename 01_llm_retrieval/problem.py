@@ -14,18 +14,18 @@ class LLM:
         self.model = model
 
     def response(self, chat, temp=0, max_tokens=500):
-        response = self.llm.chat.completions.create(messasges=chat,
-                                                    model=self.model,
-                                                    temperature=temp,
-                                                    max_tokens=max_tokens)
-        return response.choices[0].message
+        response = self.llm.chat.completions.create(model=self.model,
+                                                        messages=chat,
+                                                        temperature=temp,
+                                                        max_tokens=max_tokens)
+        return response.choices[0].message.content
 
 
 def create_dataset():
     # Load questions -- list of
     #           ['idx', 'state', 'question', 'answer', 'question_group', 'statutes', 'original_question', 'caveats']
     #           statute_idx itself has statute_idx, citation, excerpt
-    raw_dataset = load_dataset("reglab/housing_qa", "questions", split="test")
+    raw_dataset = load_dataset("reglab/housing_qa", "questions", split="test") # 6853 in total
 
     # Load questions_aux
     # questions_aux = load_dataset("reglab/housing_qa", "questions_aux", split="test")
@@ -34,8 +34,8 @@ def create_dataset():
     statutes = load_dataset("reglab/housing_qa", "statutes", split="corpus")
     statutes_map = {}
     for statute in statutes:
-        assert statute["statute_idx"] not in statutes_map
-        statutes_map[statute["statute_idx"]] = statute
+        assert statute["idx"] not in statutes_map
+        statutes_map[statute["idx"]] = statute
 
     dataset = []
 
@@ -46,13 +46,16 @@ def create_dataset():
         processed_dp = {
             "question": dp["question"],
             "answer": answer,
+            "state": dp["state"],
             "statutes": dp["statutes"]
         }
         dataset.append(processed_dp)
 
     # Keep only those datasets with a single statute
-    dataset = [dp for dp in dataset if len(dp["statutes"]) == 1]
-    dataset = dataset[:20]
+    dataset = [dp for dp in dataset if len(dp["statutes"]) == 1]   # length of dataset: 2988
+
+    # You can comment this out when running the pipeline on the entire dataset
+    dataset = dataset[:20] # start experimenting with the first 20 documents.
 
     dataset_statute = []
 

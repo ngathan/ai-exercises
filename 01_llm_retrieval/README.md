@@ -12,5 +12,7 @@ Compare the accuracy of each step to record whether the AI system is better than
 
 **Hints:**
 
-Hint 1: When prompting the LLM at the judge and self-reflection steps, keep adding the assistant's responses to the chat.
+Hint 1: When building the pipeline experimenting with the first 20, 50, 100, 200 data points in the dataset to see whether the pipeline works as expected
+Hint 2 (Advanced level): Beyond TFIDF and ngram in the problem statement, you can experiment with more advanced embedding methodology such as embedding models from OpenAI, Anthropic.  
+Hint 3 (Advanced level): Implement an index using FAISS to store all the statutes to speed up the cosine similarities calculation for the entire dataset  
 

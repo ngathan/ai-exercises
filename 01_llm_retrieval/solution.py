@@ -56,14 +56,16 @@ def create_dataset():
         processed_dp = {
             "question": dp["question"],
             "answer": answer,
-            'state': dp['state'],
+            "state": dp["state"],
             "statutes": dp["statutes"]
         }
         dataset.append(processed_dp)
 
     # Keep only those datasets with a single statute for easy retrieval
-    dataset = [dp for dp in dataset if len(dp["statutes"]) == 1]
-    dataset = dataset[:50]  # only experiment with the first 20 documents
+    dataset = [dp for dp in dataset if len(dp["statutes"]) == 1] # total:  2988
+
+    # only experiment with the first 20, 50, 100, 200 documents for quick results, then optimize with vector database later at the retrieval step
+    dataset = dataset[:1000]
 
     dataset_statute = []
 
@@ -133,16 +135,13 @@ def eval_llm(llm, dataset, use_statute=True):
 
             prompt = prompt.format(state=dp['state'], question=dp['question'])
 
-        ## TODO: where does the variable state come from? Maybe in the dataset?
-
-        # Complete this part
+        #Complete this part
         #raise NotImplementedError()
 
         chat = [{"role": "system", "content": prompt}]
         response = llm.response(chat=chat, temp=0, max_tokens=500)
 
         prediction = response  # extract the answer from response
-        #pdb.set_trace()
 
         if prediction == dp["answer"]:
             acc += 1
@@ -280,7 +279,7 @@ def main():
 
     print(f"Final accuracy with retrieval and llm is:  {final_score}")
 
-    pdb.set_trace()
+    #pdb.set_trace()
 
 
 if __name__ == '__main__':
