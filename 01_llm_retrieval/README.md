@@ -2,7 +2,7 @@
 
 **Problem Statement:** For domain specific problems such as answering complicated legal questions, using pretrained LLMs as they are might not suffice. 
 In such scenarios, retrieving the right documents, then add them to the context, and ask the same LLM to see how the accuracy might change. 
-Once it is determined that using retrieved document, the system might do better than using the pretrained LLM alone, we then set up a pipeline with a retrieval system, and using an LLM to answer the users question.
+Once it is determined that using the right document, the system might do better than using the pretrained LLM alone, we then set up a retrieval augmented generation system, and use an LLM to answer the original question.
 
 The dataset to be used in this exercise is [housing_qa](https://huggingface.co/datasets/reglab/housing_qa) from [Stanford Regulation, Evaluation and Governance Lab](https://reglab.stanford.edu/). You can read more about the dataset on [Hugging Face](https://huggingface.co/datasets/reglab/housing_qa), and the original paper [A Reasoning-Focused Legal Retrieval Benchmark](https://arxiv.org/abs/2505.03970) by Zheng et al.
 
