@@ -26,4 +26,14 @@ Before running any script, set the API key as an environment variable:
 
 The goal of this exercise is to build an LLM judge to detect failures in a model's reasoning and a self-reflection step to try to recover from those failures. Using these two steps together can help improve the model's original peformance.
 
-The folder 00_llm_judge folder contains this exercise and contains the problem definition in `llm_judge_problem.py` and solution in `llm_judge_answers.py`
+The folder 00_llm_judge folder contains this exercise and contains the problem definition in `problem.py` and solution in `solution.py`
+
+### Exercise 2: Retrieval Augmented Generation 
+
+![img](media/01_retrieval_step3.png)
+
+The goal of this exercise is to build a simple Retrieval Augmented Generation (RAG) system to retrieve the right document to answer a domain specific question (legal domain).
+
+The folder 00_llm_retrieval folder contains this exercise and contains the problem definition in `problem.py` and solution in `solution.py`
+
+
