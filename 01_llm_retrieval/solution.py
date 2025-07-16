@@ -73,7 +73,7 @@ def create_dataset():
     for dp in dataset:
 
         statute_ixs = [dp["statutes"][0]["statute_idx"]]
-        # Sample false statutes -## TODO why doing this?
+        # Sample false statutes
 
         false_statutes = random.sample(list(statutes_map.keys()), k=5)
         statute_ixs += [statute in false_statutes]
@@ -91,10 +91,8 @@ def create_dataset():
             "answer": dp["answer"],
             'state': dp['state'],
             "statutes": statutes, # these statutes have 6 answers so to say, and one of it is correct
-            "right_statute": 0 ## right statute index is number 0 !
+            "right_statute": 0 ## right statute index is number 0
         })
-
-    #pdb.set_trace()
 
     return dataset, dataset_statute
 
@@ -119,9 +117,8 @@ def eval_llm(llm, dataset, use_statute=True):
             Answer:
             """
 
-            #pdb.set_trace()
             prompt = prompt.format(state=dp['state'], statute_list=dp['statutes'], question=dp['question'])
-            #pdb.set_trace()
+
         else:
             prompt = """
             Consider statutory law for {state} in the year 2021. Answer the question below.
@@ -162,17 +159,16 @@ def predicted_retrieval(question, statutes, retrieval_type="ngram"):
     # for ngram, use some ngram style similarity
 
     if retrieval_type=='ngram':
-        n = 10 # NT: change this to reflect the similarity between question and statutes
+        n = 10 # change this to reflect the similarity between question and statutes
         similarities = []
         for statute in statutes:
             vectorizer = CountVectorizer(analyzer='char', ngram_range=(n, n))
-            #pdb.set_trace()
             X = vectorizer.fit_transform([question, statute['text']])
-            #pdb.set_trace()
             similarity = cosine_similarity(X[0:1], X[1:2])[0][0]
             similarities.append(similarity)
 
         max_similarity = max(similarities)
+
         # for cosine, use embedding and then cosine similarity -- you can use any embedding model
         # # Complete this part
         #pdb.set_trace()
@@ -186,12 +182,10 @@ def predicted_retrieval(question, statutes, retrieval_type="ngram"):
         for statute in statutes:
             vectorizer = TfidfVectorizer()
             tfidf_matrix = vectorizer.fit_transform([question, statute['text']])
-            #epdb.set_trace()
             similarity = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
             similarities.append(similarity)
 
         max_similarity = max(similarities)
-        #pdb.set_trace()
         return similarities.index(max_similarity)
 
 
@@ -246,7 +240,6 @@ def eval_full_pipeline(dataset, llm):
         if prediction == dp["answer"]:
             acc += 1
 
-    #pdb.set_trace()
     acc = (acc * 100.0) / float(len(dataset))
 
     return acc
@@ -257,7 +250,7 @@ def main():
     # Generate dataset
     dataset, dataset_statute = create_dataset()
 
-    llm = LLM(model="gpt-4.1-nano-2025-04-14") ## NT use the mano model for cost saving
+    llm = LLM(model="gpt-4.1-nano-2025-04-14") ## use the mano model for cost saving
     # Evaluate LLM with and without statues
     eval_score_wo_statute = eval_llm(llm, dataset, use_statute=False)
     eval_score = eval_llm(llm, dataset, use_statute=True)
@@ -267,7 +260,6 @@ def main():
 
     # Select the best statues for each datapoint from a list using a simple n-gram heuristic
     #eval_retrieval(dataset_statute, retrieval_type="ngram")
-    #pdb.set_trace()
 
     # Select the best statues for each datapoint from a list using vector similarity
     cosine_retrieval_acc = eval_retrieval(dataset_statute, retrieval_type="cosine")
@@ -278,8 +270,6 @@ def main():
     final_score = eval_full_pipeline(dataset_statute, llm)
 
     print(f"Final accuracy with retrieval and llm is:  {final_score}")
-
-    #pdb.set_trace()
 
 
 if __name__ == '__main__':
