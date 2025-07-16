@@ -4,7 +4,7 @@
 In such scenarios, retrieving the right documents, then add them to the context, and ask the same LLM to see how the accuracy might change. 
 Once it is determined that using retrieved document, the system might do better than using the pretrained LLM alone, we then set up a pipeline with a retrieval system, and using an LLM to answer the users question.
 
-The dataset to be used in this exercise is housing_qa from Stanford Regulation, Evaluation and Governance Lab. You can read more about the dataset here on Hugging Face, and the accompanying paper.
+The dataset to be used in this exercise is [housing_qa](https://huggingface.co/datasets/reglab/housing_qa) from [Stanford Regulation, Evaluation and Governance Lab](https://reglab.stanford.edu/). You can read more about the dataset on [Hugging Face](https://huggingface.co/datasets/reglab/housing_qa), and the original paper [A Reasoning-Focused Legal Retrieval Benchmark](https://arxiv.org/abs/2505.03970) by Zheng et al.
 
 This exercise helps you set up a simple RAG system. 
 
