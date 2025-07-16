@@ -14,3 +14,6 @@ Compare the accuracy of each step to record whether the AI system is better than
 
 Hint 1: When prompting the LLM at the judge and self-reflection steps, keep adding the assistant's responses to the chat.
 
+** Real world LLM-as-judge examples ** 
+
+[Improving retrieval with LLM-as-a-judge](https://blog.vespa.ai/improving-retrieval-with-llm-as-a-judge/)
