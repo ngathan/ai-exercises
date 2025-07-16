@@ -274,7 +274,7 @@ def main():
     print(f"Accuracy using tfidf embedding is {cosine_retrieval_acc}")
 
 
-    # Putting it together, retrieva and then answer
+    # Putting it together, retrieval and then answer
     final_score = eval_full_pipeline(dataset_statute, llm)
 
     print(f"Final accuracy with retrieval and llm is:  {final_score}")
