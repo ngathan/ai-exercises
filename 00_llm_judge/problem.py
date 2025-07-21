@@ -4,6 +4,10 @@ import csv
 from openai import OpenAI
 from datasets import load_dataset
 
+import numpy
+numpy.show_config()
+
+
 
 class LLM:
 
@@ -142,7 +146,7 @@ def main():
         full_histories.append(history)
 
     final_acc = (sum(final_scores) * 100.0) / float(len(final_scores))
-    print(f"Final Accuracyy of the Self-Reflection LLM Agent is {final_acc:.2f}")
+    print(f"Final Accuracy of the Self-Reflection LLM Agent is {final_acc:.2f}")
 
     save(full_histories)
 
