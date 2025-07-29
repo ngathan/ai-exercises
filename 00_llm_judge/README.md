@@ -25,5 +25,8 @@ Part of the GMS8k training dataset was included in GPT-4 pretraining mix to impr
 
 LLM-as-a-judge is an active area of research. Following are a few papers that introduce you to this evaluation framework that is both of interest to academia, and industry:  
 
+[JudgeBench: A Benchmark for Evaluating LLM-based Judges](https://arxiv.org/abs/2410.12784)
+[JudgeBench: A Benchmark for Evaluating LLM-Based Judges Github Repo](https://github.com/ScalerLab/JudgeBench)
 [LLMs-as-Judges: A Comprehensive Survey on LLM-based Evaluation Methods](https://arxiv.org/abs/2412.05579)
 [Daily papers onn LLMs-as-Judges](https://github.com/CSQianDong/Awesome-arXiv-Daily-Reporter/tree/main/LLMs-as-Judges)
+
