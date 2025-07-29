@@ -24,3 +24,4 @@ Part of the GMS8k training dataset was included in GPT-4 pretraining mix to impr
 **Resources**
 
 [LLMs-as-Judges: A Comprehensive Survey on LLM-based Evaluation Methods](https://arxiv.org/abs/2412.05579)
+[Daily papers onn LLMs-as-Judges](https://github.com/CSQianDong/Awesome-arXiv-Daily-Reporter/tree/main/LLMs-as-Judges)
